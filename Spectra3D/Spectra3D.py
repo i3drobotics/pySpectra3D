@@ -11,6 +11,7 @@ class Spectra3D():
     def create_header(self,plydata):
         if (self.check_valid_plydata(plydata)):
             vertex_size = len(plydata["vertex"].data)
+            
             spectrum_size = len(plydata["spectrum"].data)
             label_size = len(plydata["label"].data)            
             ply_header = ("ply\n"
