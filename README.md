@@ -2,6 +2,8 @@
 
 Tool for using spectroscopy data along side 3D. Includes python script for reading and writing the special ply format.
 
+![](https://github.com/i3drobotics/Spectra3D/blob/master/Spectra3D_example.gif)
+
 ## PLY HEADER
 A custom ply header is used to store the extra spectroscopy data. This includes text labels that identify the material that was scanned and x y z positioning of where the data was captured from. The spectroscopy data includes wavenumber and intensity.
 It is advised to keep the comments in the header of all ply files of this type to avoid confusion by explaining the data format. 
