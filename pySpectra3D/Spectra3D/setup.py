@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="spectra3D",
-    version="0.0.1.2",
+    version="0.0.1.3",
     author="Ben Knight",
     author_email="bknight@i3drobotics.com",
     description="Adding spectrum data to 3D",
@@ -14,8 +14,7 @@ setuptools.setup(
     url="https://github.com/i3drobotics/Spectra3D",
     packages=setuptools.find_packages(),
     install_requires=[
-        'numpy','matplotlib','mpl_toolkits',
-        'plyfile'
+        'numpy','matplotlib','plyfile'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
