@@ -1,4 +1,5 @@
-# **PY SPECTRA 3D**
+# **SPECTRA 3D**
+# Python Package
 
 Python tool for using spectroscopy data along side 3D by reading and writing the special ply format.
 
