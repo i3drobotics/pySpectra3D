@@ -1,6 +1,6 @@
 from Spectra3D import Spectra3D
 
-file_spectra3D = "Data/sample_room_scan_spectra3D.ply"
+file_spectra3D = "SampleData/sample_room_scan_spectra3D.ply"
 
 sp3D = Spectra3D()
 

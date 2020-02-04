@@ -1,3 +1,10 @@
+__author__ = "Ben Knight @ Industrial 3D Robotics"
+__maintainer__ = "Ben Knight"
+__email__ = "bknight@i3drobotics.com"
+__copyright__ = "Copyright 2020, Industrial 3D Robotics"
+__license__ = "MIT"
+__docformat__ = 'reStructuredText'
+
 from plyfile import PlyData, PlyElement, PlyProperty, PlyListProperty
 import numpy as np
 from numpy.polynomial import Polynomial
@@ -9,7 +16,15 @@ import string
 import os
 
 class Spectra3D():
+    """
+    Python tool for using spectroscopy data along side 3D by reading and writing the special ply format.
+    See README for details on usages: https://github.com/i3drobotics/Spectra3D/blob/master/pySpectra3D/Spectra3D/README.md
+    """
     def __init__(self):
+        """
+        Initalisation function for Spectra3D class. Defines comments that get added to ply output for elements and valid characters from csv strings.
+        Usage sp3D = self.Spectra3D()
+        """
         self.printable = set(string.printable)
         self.ply_comments = [  
             'This data format is a varient of the ply format for use',
@@ -39,12 +54,28 @@ class Spectra3D():
         ]
 
     def write_csv(self,filename,data_list):
+        """
+        Write array to comma seperated csv file.
+        :param filename: path to csv file
+        :param data_list: list to write to csv file
+        :type filename: string
+        :type data_list: list
+        """
         with open(filename, mode='w',newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',',quotechar = "'")
             for d in data_list:
                 csv_writer.writerow(d)
 
     def read_csv(self,filename,isFirstRowHeader=False):
+        """
+        Read array from comma seperated csv file.
+        :param filename: path to csv file
+        :param isFirstRowHeader: if the first row in the csv file are headers so that they are ignored
+        :type filename: string
+        :type isFirstRowHeader: bool
+        :returns: rows from file
+        :rtype: list
+        """
         rows = []
         with open(filename) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
@@ -58,6 +89,15 @@ class Spectra3D():
         return rows
 
     def read_spectra_list(self,filename,isFirstRowHeader=False):
+        """
+        Read spectrum list from comma seperated csv file.
+        :param filename: path to spectra csv file
+        :param isFirstRowHeader: if the first row in the csv file are headers so that they are ignored
+        :type filename: string
+        :type isFirstRowHeader: bool
+        :returns: (success of reading, xyzs data from file, spectra filenames from file)
+        :rtype: (bool, list, list)
+        """
         xyzs = []
         spectra_files = []
         with open(filename) as csv_file:
@@ -79,6 +119,15 @@ class Spectra3D():
         return True, xyzs, spectra_files
 
     def generate_labels(self,num_of_labels=10,string_length_range=(5,10)):
+        """
+        Generate list of random character labels for testing. 
+        :param num_of_labels: number of labels to generate
+        :param string_length_range: range of string length to generate string randomly between (min,max)
+        :type num_of_labels: int
+        :type string_length_range: list of ints
+        :returns: generated labels
+        :rtype: list
+        """
         labels = []
         chars = string.ascii_uppercase + string.digits
         for i in range(0,num_of_labels):
@@ -88,6 +137,19 @@ class Spectra3D():
         return labels
 
     def generate_3D(self,x_range=[0,100],y_range=[0,100],z_range=[0,100],num_of_points=1000):
+        """
+        Generate random 3D data for testing.
+        :param x_range: range of random ints to generate x values (min,max)
+        :param y_range: range of random ints to generate y values (min,max)
+        :param z_range: range of random ints to generate z values (min,max)
+        :param num_of_points: number of 3D points to generate
+        :type x_range: list of ints
+        :type y_range: list of ints
+        :type z_range: list of ints
+        :type num_of_points: int
+        :returns: generated 3D data
+        :rtype: PlyData
+        """
         data = []
         for i in range(0,num_of_points):
             x = random.uniform(x_range[0], x_range[1])
@@ -104,6 +166,25 @@ class Spectra3D():
         return PlyData([el])
 
     def generate_spectra(self,wavenumber_range=[0,1000],intensity_range=[0,1000],x_range=[0,100],y_range=[0,100],z_range=[0,100],num_of_points=1000,label_list_length=10):
+        """
+        Generate random spectra for testing.
+        :param wavenumber_range: range of random ints to generate wavenumber (min,max)
+        :param intensity_range: range of random ints to generate intensity (min,max)
+        :param x_range: range of random ints to generate x values (min,max)
+        :param y_range: range of random ints to generate y values (min,max)
+        :param z_range: range of random ints to generate z values (min,max)
+        :param num_of_points: number of spectrum points to generate
+        :param label_list_length: random label indicies are generated between 0 and this value
+        :type wavenumber_range: list of ints
+        :type intensity_range: list of ints
+        :type x_range: list of ints
+        :type y_range: list of ints
+        :type z_range: list of ints
+        :type num_of_points: int
+        :type label_list_length: int
+        :returns: (generated spectrum data, generated xyz capture positions of data)
+        :rtype: (list, list)
+        """
         data = []
         spectra_data = []
         for n in range(0,num_of_points):
@@ -134,6 +215,15 @@ class Spectra3D():
         return data, xyz_data
         
     def check_element_properties(self,plydata_element_properties,required_properties):
+        """
+        Check ply elements properties contains the required properties defined in 'required_properties'
+        :param plydata_element_properties: List of PlyProperty's to check
+        :param required_properties: List of PlyProperty's required to find in 'plydata_element_properties'
+        :type plydata_element_properties: List
+        :type required_properties: List
+        :returns: valid
+        :rtype: bool
+        """
         # initialise found array
         properties_found = []
         for p in required_properties:
@@ -168,6 +258,13 @@ class Spectra3D():
         return True
 
     def check_valid_plydata(self,plydata):
+        """
+        Check ply data is valid as expected by the defined ply format
+        :param plydata: ply data to check
+        :type plydata: PlyData
+        :returns: valid
+        :rtype: bool
+        """
         # check data is of correct format
         # check data contains correct number of elements
         correct_num_of_elements = 3
@@ -202,10 +299,17 @@ class Spectra3D():
         return True
 
     def read_spectra(self,spectra_csv,xyz,isFirstRowHeader=False):
-        # [in] filename: (string) filename of comma seperated csv spectra data. Col1: Wavenumber, Col2: Intensity, Col3: Label_index, Col4: Similarity. First row are headers.
-        # [in] xyz: (list[3]) x,y,z co-ordinate of where the measurement was taken.
-        # [in] isFirstRowHeader: (bool) defines if first row of the csv file contains the header names. If so the first row is skipped when loading the data.
-        # [out] data_spectra: (list[list[3],list[n],list[n],list[m],list[m]]) spectral data (xyz,wavenumber,intensity,label_index,similarity)
+        """
+        Read spectra from csv file into desired format
+        :param spectra_csv: filename of comma seperated csv spectra data. Col1: Wavenumber, Col2: Intensity, Col3: Label_index, Col4: Similarity.
+        :param xyz: x,y,z co-ordinate of where the measurement was taken.
+        :param isFirstRowHeader: defines if first row of the csv file contains the header names. If so the first row is skipped when loading the data.
+        :type spectra_csv: string
+        :type xyz: list
+        :type isFirstRowHeader: bool
+        :returns: (read_success, spectral data (xyz,wavenumber,intensity,label_index,similarity) )
+        :rtype: (bool,list)
+        """
         data_spectra = []
         # check xyz is the correct size
         if (len(xyz) != 3):
@@ -251,9 +355,15 @@ class Spectra3D():
         return True,data_spectra
 
     def read_spectra_labels(self,label_csv,isFirstRowHeader=False):
-        # [in] filename: (string) filename of comma seperated csv spectra data. Col1: Wavenumber, Col2: Intensity. First row are headers.
-        # [in] isFirstRowHeader: (bool) defines if first row of the csv file contains the header names. If so the first row is skipped when loading the data.
-        # [out] labels: list[n] label name list 
+        """
+        Read spectrum labels from csv to desired format
+        :param label_csv: filename of comma seperated csv label data.
+        :param isFirstRowHeader: defines if first row of the csv file contains the header names. If so the first row is skipped when loading the data.
+        :type label_csv: string
+        :type isFirstRowHeader: bool
+        :returns: (read_success, substance labels)
+        :rtype: (bool,list)
+        """
         label = []
         # read csv file
         with open(label_csv) as csv_file:
@@ -273,6 +383,19 @@ class Spectra3D():
         return True,label
 
     def createSpectra3D(self,data_spectra,data_labels,data_3D):
+        """
+        Read spectrum labels from csv to desired format
+        :param data_spectra: Spectum data. Col1: Wavenumber, Col2: Intensity, Col3: Label_index, Col4: Similarity.
+        :param data_labels: Label of substances. MUST be in the same order as indices used in data_spectra's label_index
+        :param data_3D: 3D data points
+        :type data_spectra: list
+        :type data_labels: list
+        :type data_3D: PlyElement
+        :returns: (success, Spectra3D ply data)
+        :rtype: (bool,PlyData)
+        :todo: fix numpy creation issue in 'label_data' when all strings are the same size
+
+        """
         plydata_3D = data_3D
 
         # convert spectra data in correct format for plydata
@@ -336,6 +459,13 @@ class Spectra3D():
         return True, plydata
         
     def read_ply(self,filename):
+        """
+        Read data from ply file
+        :param filename: Path of ply file to load from.
+        :type filename: string
+        :returns: (ply data includes expected data format, ply data)
+        :rtype: (bool,PlyData)
+        """
         # read data from file
         plydata = PlyData.read(filename)
         isDataValid = self.check_valid_plydata(plydata)
@@ -343,10 +473,22 @@ class Spectra3D():
         return isDataValid, plydata
 
     def write_ply(self,plydata,filename,isBinary=False):
+        """
+        Write PlyData to ply file
+        :param plydata: ply data to write to file
+        :param filename: Path of ply file to write to.
+        :type plydata: PlyData
+        :type filename: string
+        """
         with open(filename, mode='wb') as f:
             PlyData(plydata, text=True, comments=plydata.comments).write(f)
 
     def plt_matplotlib(self,plydata):
+        """
+        Plot ply data on 3D graph. If spectrum data is included then also plots this data and enables interface for clicking these points to view the data in more detail.
+        :param plydata: ply data to write to file
+        :type plydata: PlyData
+        """
         vertex = plydata['vertex']
         fig3D = plt.figure()
         ax3D = fig3D.add_subplot(111, projection='3d')

@@ -1,10 +1,10 @@
 from Spectra3D import Spectra3D
 import os
 
-file_3D_in = "Data/sample_room_scan_20000.ply"
-file_spectral_list_in = "Data/sample_spectrum_list.csv"
-file_labels_in = "Data/sample_spectrum_labels.csv"
-file_out = "Data/sample_data_out.ply"
+file_3D_in = "SampleData/sample_room_scan_20000.ply"
+file_spectral_list_in = "SampleData/sample_spectrum_list.csv"
+file_labels_in = "SampleData/sample_spectrum_labels.csv"
+file_out = "SampleData/sample_data_out.ply"
 
 sp3D = Spectra3D()
 

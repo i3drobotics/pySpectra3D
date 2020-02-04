@@ -1,8 +1,0 @@
-README.md
-setup.py
-Spectra3D/__init__.py
-spectra3D_i3DR.egg-info/PKG-INFO
-spectra3D_i3DR.egg-info/SOURCES.txt
-spectra3D_i3DR.egg-info/dependency_links.txt
-spectra3D_i3DR.egg-info/requires.txt
-spectra3D_i3DR.egg-info/top_level.txt

@@ -2,12 +2,12 @@
 
 Python tool for using spectroscopy data along side 3D by reading and writing the special ply format.
 
-![GIF of labelled 3D point cloud showing spectrum data](https://raw.githubusercontent.com/i3drobotics/Spectra3D/master/Python/Spectra3D/pySpectra3D_example.gif)
+![GIF of labelled 3D point cloud showing spectrum data](https://raw.githubusercontent.com/i3drobotics/Spectra3D/master/pySpectra3D/Spectra3D/pySpectra3D_example.gif)
 
 ## **Run**
 This tool can be used to add spectral data to 3D data and write it to ply format. This brings several sources of data into one collated file that is much easier to deal with.
 
-It is adviced to look at and run the example code [Samples](https://github.com/i3drobotics/Spectra3D/tree/master/Python/Samples) to understand the data format expected. This script demonstrates using spectra 3D with auto generated data or loading data from csv and ply files.
+It is adviced to look at and run the example code [Samples](https://github.com/i3drobotics/Spectra3D/tree/master/pySpectra3D/SampleScripts) to understand the data format expected. This script demonstrates using spectra 3D with auto generated data or loading data from csv and ply files.
 
 ### **3D data**
 3D data contains x,y,z co-ordinates generated from stereo cameras / lidar / photogrammetry. This script expects this data in the form of a ply file. This can include vertex color data which will be preserved. 
@@ -58,7 +58,7 @@ Thirdly there should be a csv file contains the xyz co-ordinate of where the spe
 | . . . | . . . | . . . | . . .                |
 ```
 
-Example data is included in this repository to clarify this format. Check the [Samples](https://github.com/i3drobotics/Spectra3D/tree/master/Python/Samples) for an example of usage. 
+Example data is included in this repository to clarify this format. Check the [Samples](https://github.com/i3drobotics/Spectra3D/tree/master/pySpectra3D/SampleScripts) for an example of usage. 
 
 ## **Generating sample data**
 Package contains functions for generating test data to try out the class. 

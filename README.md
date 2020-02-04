@@ -9,6 +9,6 @@ Install via pip:
 ```
 pip install spectra3D-i3dr
 ```
-See python [README](https://github.com/i3drobotics/Spectra3D/blob/master/Python/Spectra/README.md) for detailed description of the package.
+See python [README](https://github.com/i3drobotics/Spectra3D/blob/master/pySpectra3D/Spectra3D/README.md) for detailed description of the package.
 ## C++
 [COMMING SOON]
