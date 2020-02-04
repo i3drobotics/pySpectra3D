@@ -7,7 +7,7 @@ Tool for using spectroscopy data along side 3D by reading and writing the specia
 ## Python
 Install via pip:
 ```
-pip install spectra3D-i3dr
+pip install spectra3D
 ```
 See python [README](https://github.com/i3drobotics/Spectra3D/blob/master/pySpectra3D/Spectra3D/README.md) for detailed description of the package.
 ## C++
