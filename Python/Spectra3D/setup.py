@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="spectra3D-i3DR", # Replace with your own username
-    version="0.0.3",
+    version="0.0.3.1",
     author="Ben Knight",
     author_email="bknight@i3drobotics.com",
     description="Adding spectrum to 3D",
