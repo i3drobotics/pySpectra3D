@@ -20,7 +20,7 @@ if (gen3D):
     y_range = (0,10)
     z_range = (0,10)
     num_of_points = 1000
-    file_3D = "Data/gen_3D_data.ply"
+    file_3D = "SampleData/gen_3D_data.ply"
     print("Generating 3D test data...")
     ply3D = sp3D.generate_3D(x_range,y_range,z_range,num_of_points)
     # save 3D data to PLY
@@ -43,8 +43,8 @@ if (genSpec):
     intensity_range = (0,100)
     num_of_points = 1000
     num_of_labels = 5
-    file_labels = "Data/gen_labels.csv"
-    file_spectra_list = "Data/gen_spectrum_list.csv"
+    file_labels = "SampleData/gen_labels.csv"
+    file_spectra_list = "SampleData/gen_spectrum_list.csv"
 
     # generate label data
     data_labels = sp3D.generate_labels(num_of_labels)
@@ -60,7 +60,7 @@ if (genSpec):
     print("Generating spectral test data...")
     xyz_spectra = []
     for i in range(0,num_of_spectra):
-        file_spectra = 'Data/gen_spectrum_data_{}.csv'.format(i)
+        file_spectra = 'SampleData/gen_spectrum_data_{}.csv'.format(i)
         spectra_data, xyz_data = sp3D.generate_spectra(wavenumber_range,intensity_range,x_range,y_range,z_range,num_of_points,len(data_labels))
         # write spectral data to csv
         sp3D.write_csv(file_spectra,spectra_data)
@@ -90,7 +90,7 @@ if (genSpec):
     os.remove(file_labels_in)
     os.remove(file_spectral_list_in)
     for i in range(0,num_of_spectra):
-        file_spectra = 'Data/gen_spectrum_data_{}.csv'.format(i)
+        file_spectra = 'SampleData/gen_spectrum_data_{}.csv'.format(i)
         os.remove(file_spectra)
 
 print("Creating spectra3D data...")

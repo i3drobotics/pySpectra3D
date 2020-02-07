@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "python setup.py sdist bdist_wheel",
             "options": {
-                "cwd": "${workspaceFolder}/pySpectra3D/Spectra3D"
+                "cwd": "${workspaceFolder}"
             },
             "presentation":{
                 "echo": true,
@@ -25,7 +25,7 @@
             "type": "shell",
             "command": "python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*",
             "options": {
-                "cwd": "${workspaceFolder}/pySpectra3D/Spectra3D"
+                "cwd": "${workspaceFolder}"
             },
             "presentation":{
                 "echo": true,
@@ -42,7 +42,7 @@
             "type": "shell",
             "command": "python -m twine upload dist/*",
             "options": {
-                "cwd": "${workspaceFolder}/pySpectra3D/Spectra3D"
+                "cwd": "${workspaceFolder}"
             },
             "presentation":{
                 "echo": true,
@@ -59,7 +59,7 @@
             "type": "shell",
             "command": "python setup.py clean --all && python setup.py rotate --match=.tar.gz,.whl,.egg,.egg-info --keep=0",
             "options": {
-                "cwd": "${workspaceFolder}/pySpectra3D/Spectra3D"
+                "cwd": "${workspaceFolder}"
             },
             "presentation":{
                 "echo": true,
